@@ -67,6 +67,7 @@ export const Home = styled.div`
     height: 50px;
     margin: 2% auto;
     cursor: pointer;
+    z-index: 10;
     border: 1px solid #0d4475;
     background-color: rgba(0, 0, 0, 0);
     transition: 1s;
@@ -92,14 +93,24 @@ export const Logo = styled.img`
 `;
 export const Image = styled.div`
   position: absolute;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  img {
+`;
+
+export const ImageMobile = styled.div`
+margin: 0 auto;
+  img{
     width: 100%;
   }
+`
+export const Arka = styled.img`
+  margin-top: 1100px;
+  width: 100%;
+  @media(max-width: 930px) {
+    margin-top: 930px;
+  }
+  @media(max-width: 720px) {
+    margin-top: 690px;
+  }
 `;
-export const Arka = styled.img`margin-top: 1100px;
-    width: 100%;`
 export const ContainerLogo = styled.div`
   display: flex;
   flex-direction: row;
@@ -107,6 +118,9 @@ export const ContainerLogo = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: flex-end;
+  @media (max-width: 1045px) {
+    width: 40%;
+  }
 `;
 
 export const Text = styled.img`
