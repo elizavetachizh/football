@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  Container,
   Home,
   ImageMobile,
   Image,
@@ -21,6 +20,7 @@ export const HomePage = () => {
         <>
           <Logo alt={""} src={require("../assets/logo.png")} />
           <Link to="/api/groups">Просмотр турнирных таблиц</Link>
+          <Link to="/final">Финал</Link>
           <ImageMobile>
             <img alt={""} src={require("../assets/image.png")} />
           </ImageMobile>
@@ -34,6 +34,7 @@ export const HomePage = () => {
           </ContainerLogo>
           <Text src={require("../assets/text.png")} />
           <Link to="/api/groups">Просмотр турнирных таблиц</Link>
+          <Link to="/final">Финал</Link>
           <Image>
             <Arka alt={""} src={require("../assets/arka_all.png")} />
           </Image>

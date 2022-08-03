@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "./table";
 import {
   Container,
@@ -19,19 +19,15 @@ export default function ContainerPage() {
       if (currentGroupId === id) {
         setCurrentGroupId("");
         setIsOpen(false);
-        console.log(currentGroupId);
       } else {
         setCurrentGroupId(id);
         setIsOpen(true);
-        console.log(currentGroupId);
       }
-
-      console.log(currentGroupId);
     },
     [isOpen, currentGroupId]
   );
 
-  const getData = useCallback(async () => {
+   const getData = useCallback(async () => {
     const response = await fetch("http://172.16.192.11:8000/api/groups/", {
       method: "GET",
       mode: "cors",
@@ -48,9 +44,9 @@ export default function ContainerPage() {
   }, [data]);
   return (
     <Container
-      // style={{
-      //   background: `url(${require("../assets/chel_1.png")}) 0 34% 20% "no-repeat", url(${require("../assets/chel_2.png")}) 0 74% 20% "no-repeat"`,
-      // }}
+    // style={{
+    //   background: `url(${require("../assets/chel_1.png")}) 0 34% 20% "no-repeat", url(${require("../assets/chel_2.png")}) 0 74% 20% "no-repeat"`,
+    // }}
     >
       <ContainerTable>
         {!data.length ? (
