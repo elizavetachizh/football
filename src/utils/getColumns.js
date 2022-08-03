@@ -12,17 +12,13 @@ export const getColumns = (object) => {
 
   return [
     {
-      Header: "Team Name",
+      Header: "Название команды",
       accessor: "teamName",
     },
     ...teams,
     {
-      Header: "Кол-во забитых:пропущенных/коэфф",
+      Header: "Кол-во заброшенных : пропущенных / коэфф",
       accessor: `goals`,
-    },
-    {
-      Header: "Проигранные матчи",
-      accessor: "lose",
     },
     {
       Header: "Выигранные матчи",
@@ -32,7 +28,10 @@ export const getColumns = (object) => {
       Header: "Матчи вничью",
       accessor: "draw",
     },
-
+    {
+      Header: "Проигранные матчи",
+      accessor: "lose",
+    },
     {
       Header: "Количество очков",
       accessor: "score",

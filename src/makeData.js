@@ -1,14 +1,14 @@
 const getScore = (team1, team2, matches) => {
   const currentMatch = matches.find(
     (match) =>
-      (match.team1_name === team1 && match.team2_name === team2) ||
-      (match.team1_name === team2 && match.team2_name === team1)
+      (match?.team1_name === team1 && match?.team2_name === team2) ||
+      (match?.team1_name === team2 && match?.team2_name === team1)
   );
 
   const score_team1 = currentMatch?.score_team1;
   const score_team2 = currentMatch?.score_team2;
   const score =
-    currentMatch.team1_name === team1
+    currentMatch?.team1_name === team1
       ? `${score_team1} / ${score_team2}`
       : `${score_team2} / ${score_team1}`;
 
@@ -37,10 +37,10 @@ export const getTableData = (object) => {
     return {
       teamName: team.name,
       ...results,
-      goals: `${team.goals}:${team.missed_goals}/${team.coeff}`,
-      lose: team.loss_count,
+      goals: `${team.goals} : ${team.missed_goals} / ${team.coeff}`,
       win: team.win_count,
       draw: team.draw_count,
+      lose: team.loss_count,
       score: team.score,
       place: team.place,
     };
