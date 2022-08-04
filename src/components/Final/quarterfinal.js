@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { BlockInform, NameGroup } from "../styles";
-import { ContainerFinal, TableStyleForFinal } from "../stylesFinal";
+import { TableStyleForFinal } from "../stylesFinal";
 
 export default function Quarterfinal() {
   const [data, setData] = useState([]);

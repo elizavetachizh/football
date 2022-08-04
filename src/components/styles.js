@@ -224,10 +224,3 @@ export const BlockInform = styled.div`
     }
   }
 `;
-export const BlockFinal = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-`;
