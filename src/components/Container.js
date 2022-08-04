@@ -7,8 +7,13 @@ import {
   ContainerForTables,
   NameGroup,
   BlockInform,
+  BlockFinal,
 } from "./styles";
 import ReactLoading from "react-loading";
+import Quarterfinal from "./Final/quarterfinal";
+import OneSecondFinal from "./Final/OneSecondFinal";
+import Final from "./Final/final";
+import ThirdPlace from "./Final/thirdPlace";
 
 export default function ContainerPage() {
   const [data, setData] = useState([]);
@@ -27,7 +32,7 @@ export default function ContainerPage() {
     [isOpen, currentGroupId]
   );
 
-   const getData = useCallback(async () => {
+  const getData = useCallback(async () => {
     const response = await fetch("http://172.16.192.11:8000/api/groups/", {
       method: "GET",
       mode: "cors",
@@ -43,11 +48,7 @@ export default function ContainerPage() {
     }
   }, [data]);
   return (
-    <Container
-    // style={{
-    //   background: `url(${require("../assets/chel_1.png")}) 0 34% 20% "no-repeat", url(${require("../assets/chel_2.png")}) 0 74% 20% "no-repeat"`,
-    // }}
-    >
+    <Container>
       <ContainerTable>
         {!data.length ? (
           <ContainerLoading>
@@ -101,6 +102,10 @@ export default function ContainerPage() {
             </>
           </ContainerForTables>
         )}
+        <Quarterfinal />
+        <OneSecondFinal />
+        <ThirdPlace />
+        <Final />
       </ContainerTable>
     </Container>
   );

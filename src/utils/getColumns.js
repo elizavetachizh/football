@@ -5,10 +5,6 @@ export const getColumns = (object) => {
     Header: team.name,
     accessor: team.name,
   }));
-  const goals = object.teams.map((team) => ({
-    Header: "Кол-во забитых:пропущенных/коэфф",
-    accessor: `${team.goals}:${team.missed_goals}/${team.coeff}`,
-  }));
 
   return [
     {

@@ -42,7 +42,7 @@ export const getTableData = (object) => {
       draw: team.draw_count,
       lose: team.loss_count,
       score: team.score,
-      place: team.place,
+      place: team?.place,
     };
   });
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./components/home";
 import ContainerPage from "./components/Container";
-import Final from "./components/final";
+import Final from "./components/Final/final";
 
 function App() {
   return (

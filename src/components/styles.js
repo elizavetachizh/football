@@ -6,14 +6,21 @@ const opacityAnimation = keyframes`
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  background: url(${require("../assets/chel_1.png")}) left 38% no-repeat, url(${require("../assets/chel_2.png")}) 100% 58% no-repeat, url(${require("../assets/chel_3.png")}) left bottom no-repeat;
+  background: url(${require("../assets/chel_1.png")}) left 38% no-repeat, url(${require("../assets/chel_2.png")})  right bottom no-repeat, url(${require("../assets/chel_3.png")}) left 80% no-repeat;
+  @media(max-width:800px ) {
+    background-size: 40%;
+  }
+  @media(max-width:500px ) {
+    background-size: 60%;
+  }
   background-size: 20%;
 );
 
 `;
 export const TableStyle = styled.table`
   border-spacing: 0;
-  width: 100%;
+  width: 94%;
+  font-weight: bold;
   border: 1px solid black;
   margin: 4% auto;
   text-align: center;
@@ -35,6 +42,10 @@ export const TableStyle = styled.table`
     :last-child {
       border-right: 0;
     }
+  }
+  th,
+  td:first-child {
+    width: 3%;
   }
   @media (max-width: 600px) {
     font-size: 14px;
@@ -197,7 +208,6 @@ export const NameGroup = styled.div`
 
 export const BlockInform = styled.div`
   display: none;
-
   &.shake {
     margin: 0 auto;
     text-align: center;
@@ -213,4 +223,11 @@ export const BlockInform = styled.div`
       text-align: center;
     }
   }
+`;
+export const BlockFinal = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
