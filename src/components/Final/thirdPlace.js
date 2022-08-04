@@ -26,7 +26,9 @@ export default function ThirdPlace() {
 
   return (
     <>
-      {data.length && (
+      {!data.length ? (
+        <></>
+      ) : (
         <ContainerFinal>
           <>
             <NameGroup onClick={animate}>

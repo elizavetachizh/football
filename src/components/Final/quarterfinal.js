@@ -26,7 +26,9 @@ export default function Quarterfinal() {
 
   return (
     <>
-      {data.length && (
+      {!data.length ? (
+        <></>
+      ) : (
         <>
           <NameGroup onClick={animate}>
             <p>Четверть финала</p>

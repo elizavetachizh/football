@@ -7,7 +7,6 @@ import {
   ContainerForTables,
   NameGroup,
   BlockInform,
-  BlockFinal,
 } from "./styles";
 import ReactLoading from "react-loading";
 import Quarterfinal from "./Final/quarterfinal";
@@ -48,65 +47,77 @@ export default function ContainerPage() {
     }
   }, [data]);
   return (
-    <Container>
-      <ContainerTable>
-        {!data.length ? (
-          <ContainerLoading>
-            <ReactLoading
-              type={"spinningBubbles"}
-              color={"#0d4475"}
-              className="loading"
+    <>
+      {!data.length ? (
+        <ContainerLoading>
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#0d4475"}
+            className="loading"
+          />
+          <p>Идёт загрузка данных, пожалуйста, подождите...</p>
+          <div>
+            <img src={require("../assets/mingas.png")} />
+            <img src={require("../assets/logo.png")} />
+          </div>
+        </ContainerLoading>
+      ) : (
+        <Container>
+          <ContainerTable>
+            <ContainerForTables>
+              <img src={require("../assets/headerTables.png")} alt={""} />
+              <>
+                {data.map((el) => (
+                  <>
+                    <NameGroup onClick={() => animate(el.id)}>
+                      <p>Группа: {el.name}</p>
+                      {isOpen && currentGroupId === el.id ? (
+                        <img
+                          style={{ width: "50px", marginBottom: "1rem" }}
+                          src={require("../assets/strelca2.png")}
+                        />
+                      ) : (
+                        <img
+                          style={{ width: "50px", marginBottom: "1rem" }}
+                          src={require("../assets/strelca.png")}
+                        />
+                      )}
+                      <img
+                        style={{ width: "70%" }}
+                        src={require("../assets/lineOne.png")}
+                      />
+                    </NameGroup>
+                    <BlockInform
+                      className={isOpen && currentGroupId === el.id && "shake"}
+                    >
+                      <iframe
+                        width="700"
+                        height="400"
+                        src={el.stream_url}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                      <Table key={el.id} object={el} />
+                    </BlockInform>
+                  </>
+                ))}
+              </>
+            </ContainerForTables>
+            <Quarterfinal />
+            <OneSecondFinal />
+            <ThirdPlace />
+            <Final />
+          </ContainerTable>
+          <div>
+            <img
+              style={{ width: "100px" }}
+              src={require("../assets/logo.png")}
             />
-            <p>Идёт загрузка данных, пожалуйста, подождите...</p>
-          </ContainerLoading>
-        ) : (
-          <ContainerForTables>
-            <img src={require("../assets/headerTables.png")} alt={""} />
-            <>
-              {data.map((el) => (
-                <>
-                  <NameGroup onClick={() => animate(el.id)}>
-                    <p>Группа: {el.name}</p>
-                    {isOpen && currentGroupId === el.id ? (
-                      <img
-                        style={{ width: "50px", marginBottom: "1rem" }}
-                        src={require("../assets/strelca2.png")}
-                      />
-                    ) : (
-                      <img
-                        style={{ width: "50px", marginBottom: "1rem" }}
-                        src={require("../assets/strelca.png")}
-                      />
-                    )}
-                    <img
-                      style={{ width: "70%" }}
-                      src={require("../assets/lineOne.png")}
-                    />
-                  </NameGroup>
-                  <BlockInform
-                    className={isOpen && currentGroupId === el.id && "shake"}
-                  >
-                    <iframe
-                      width="560"
-                      height="315"
-                      src={el.stream_url}
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                    <Table key={el.id} object={el} />
-                  </BlockInform>
-                </>
-              ))}
-            </>
-          </ContainerForTables>
-        )}
-        <Quarterfinal />
-        <OneSecondFinal />
-        <ThirdPlace />
-        <Final />
-      </ContainerTable>
-    </Container>
+          </div>
+        </Container>
+      )}
+    </>
   );
 }
