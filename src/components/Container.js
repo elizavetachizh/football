@@ -9,13 +9,12 @@ import {
   BlockInform,
 } from "./styles";
 import ReactLoading from "react-loading";
-import Quarterfinal from "./Final/quarterfinal";
-import OneSecondFinal from "./Final/OneSecondFinal";
-import Final from "./Final/final";
 import ThirdPlace from "./Final/thirdPlace";
+import SecondVersion from "./Final/secondМersion";
 
 export default function ContainerPage() {
   const [data, setData] = useState([]);
+  const [stream, setStream] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [currentGroupId, setCurrentGroupId] = useState("");
   const animate = useCallback(
@@ -41,9 +40,14 @@ export default function ContainerPage() {
     });
     return await response.json();
   }, []);
+  const getStream = useCallback(async () => {
+    const response = await fetch("http://172.16.192.11:8000/api/stream/");
+    return await response.json();
+  }, []);
   useEffect(() => {
     if (!data.length) {
       getData().then((result) => setData(result));
+      getStream().then((resultStream) => setStream(resultStream));
     }
   }, [data]);
   return (
@@ -56,17 +60,24 @@ export default function ContainerPage() {
             className="loading"
           />
           <p>Идёт загрузка данных, пожалуйста, подождите...</p>
-          <div>
-            <img src={require("../assets/mingas.png")} />
-            <img src={require("../assets/logo.png")} />
-          </div>
         </ContainerLoading>
       ) : (
         <Container>
           <ContainerTable>
             <ContainerForTables>
               <img src={require("../assets/headerTables.png")} alt={""} />
+              {stream.map((el) => (
+                <iframe
+                  src={el.stream_url}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ))}
               <>
+                <SecondVersion />
+                <ThirdPlace />
                 {data.map((el) => (
                   <>
                     <NameGroup onClick={() => animate(el.id)}>
@@ -82,33 +93,29 @@ export default function ContainerPage() {
                           src={require("../assets/strelca.png")}
                         />
                       )}
-                      <img
-                        style={{ width: "70%" }}
-                        src={require("../assets/lineOne.png")}
-                      />
                     </NameGroup>
                     <BlockInform
                       className={isOpen && currentGroupId === el.id && "shake"}
                     >
-                      <iframe
-                        width="700"
-                        height="400"
-                        src={el.stream_url}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                      {/*<iframe*/}
+                      {/*  width="700"*/}
+                      {/*  height="400"*/}
+                      {/*  src={el.stream_url}*/}
+                      {/*  title="YouTube video player"*/}
+                      {/*  frameBorder="0"*/}
+                      {/*  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
+                      {/*  allowFullScreen*/}
+                      {/*></iframe>*/}
                       <Table key={el.id} object={el} />
                     </BlockInform>
+                    <img
+                      style={{ width: "70%" }}
+                      src={require("../assets/lineOne.png")}
+                    />
                   </>
                 ))}
               </>
             </ContainerForTables>
-            <Quarterfinal />
-            <OneSecondFinal />
-            <ThirdPlace />
-            <Final />
           </ContainerTable>
           <div>
             <img

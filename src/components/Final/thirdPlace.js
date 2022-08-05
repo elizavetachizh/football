@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { BlockInform, NameGroup } from "../styles";
-import { ContainerFinal, TableStyleForFinal } from "../stylesFinal";
+import {
+  ContainerFinal,
+  ContainerThirdPlace,
+  TableStyleForFinal,
+} from "../stylesFinal";
 
 export default function ThirdPlace() {
   const [data, setData] = useState([]);
@@ -29,61 +33,57 @@ export default function ThirdPlace() {
       {!data.length ? (
         <></>
       ) : (
-        <ContainerFinal>
-          <>
-            <NameGroup onClick={animate}>
-              <p>Матч за 3 место</p>
-              {isOpen ? (
-                <img
-                  style={{ width: "50px", marginBottom: "1rem" }}
-                  src={require("../../assets/strelca2.png")}
-                />
-              ) : (
-                <img
-                  style={{ width: "50px", marginBottom: "1rem" }}
-                  src={require("../../assets/strelca.png")}
-                />
-              )}
+        <>
+          <NameGroup onClick={animate}>
+            <p>Матч за третье место</p>
+            {isOpen ? (
               <img
-                style={{ width: "70%" }}
-                src={require("../../assets/lineOne.png")}
+                style={{ width: "50px", marginBottom: "1rem" }}
+                src={require("../../assets/strelca2.png")}
               />
-            </NameGroup>
-            {data.map((el) =>
-              el.matches.map((match) => (
-                <>
-                  {match.final_type === "4" && (
-                    <BlockInform className={isOpen && "shake"}>
-                      <TableStyleForFinal>
-                        <div>
-                          <p>
-                            Играющие команды : {match.team1_name} /{" "}
-                            {match.team2_name}
-                          </p>
-                          <p>
-                            Счёт : {match.score_team1} / {match.score_team2}
-                          </p>
-                          <p>Победила команда {}:</p>
-                        </div>
-                        <div>
-                          <iframe
-                            width="500"
-                            height="300"
-                            src={match.stream_url}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          ></iframe>
-                        </div>
-                      </TableStyleForFinal>
-                    </BlockInform>
-                  )}
-                </>
-              ))
+            ) : (
+              <img
+                style={{ width: "50px", marginBottom: "1rem" }}
+                src={require("../../assets/strelca.png")}
+              />
             )}
-          </>
-        </ContainerFinal>
+          </NameGroup>
+          <ContainerThirdPlace className={isOpen && "shake"}>
+            {data.map((el) =>
+              !el.matches.length ? (
+                <>Данный матч еще не прошёл...</>
+              ) : (
+                <>
+                  {el.matches.map((match) => (
+                    <ContainerFinal>
+                      {match.final_type === "0" && (
+                        <TableStyleForFinal>
+                          <div>
+                            <p>
+                              {match.team1_name} - {match.score_team1}
+                            </p>
+                            <p>
+                              {match.team2_name} - {match.score_team2}
+                            </p>
+                            {match.score_team1 > match.score_team2 ? (
+                              <p>Победила команда {match.team1_name}</p>
+                            ) : (
+                              <p>Победила команда {match.team2_name}</p>
+                            )}
+                          </div>
+                        </TableStyleForFinal>
+                      )}
+                    </ContainerFinal>
+                  ))}
+                </>
+              )
+            )}
+          </ContainerThirdPlace>
+          <img
+            style={{ width: "70%" }}
+            src={require("../../assets/lineOne.png")}
+          />
+        </>
       )}
     </>
   );

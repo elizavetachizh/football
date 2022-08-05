@@ -1,12 +1,12 @@
 import styled, { keyframes } from "styled-components";
-const opacityAnimation = keyframes`
+export const opacityAnimation = keyframes`
   0% { opacity: 0; }
   100% { opacity: 1; }
 `;
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  background: url(${require("../assets/chel_1.png")}) left 38% no-repeat, url(${require("../assets/chel_2.png")})  right bottom no-repeat, url(${require("../assets/chel_3.png")}) left 80% no-repeat;
+  background: url(${require("../assets/chel_1.png")}) left 58% no-repeat, url(${require("../assets/chel_3.png")}) left 90% no-repeat;
   @media(max-width:800px ) {
     background-size: 40%;
   }
@@ -19,9 +19,10 @@ export const Container = styled.div`
 `;
 export const TableStyle = styled.table`
   border-spacing: 0;
-  width: 94%;
-  font-weight: bold;
   border: 1px solid black;
+  width: 94%;
+  border-radius: 10px;
+  font-weight: bold;
   margin: 4% auto;
   text-align: center;
   tr {
@@ -178,11 +179,18 @@ export const MingasLogo = styled.img`
 export const ContainerForTables = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
+  justify-content: center;
   margin: 0 auto;
   width: 100%;
   img {
     width: 100%;
     margin: 0 auto;
+  }
+  iframe {
+    width: 90%;
+    margin: 0 auto;
+    height: 500px;
   }
 `;
 

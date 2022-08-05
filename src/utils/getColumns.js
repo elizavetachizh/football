@@ -13,7 +13,7 @@ export const getColumns = (object) => {
     },
     ...teams,
     {
-      Header: "Кол-во заброшенных : пропущенных / коэфф",
+      Header: "Кол-во забитых : пропущенных / разница",
       accessor: `goals`,
     },
     {

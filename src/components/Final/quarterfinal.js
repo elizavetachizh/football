@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import { BlockInform, NameGroup } from "../styles";
-import { TableStyleForFinal } from "../stylesFinal";
+import { ContainerFinal, TableStyleForFinal } from "../stylesFinal";
 
 export default function Quarterfinal() {
   const [data, setData] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const animate = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
   const getData = useCallback(async () => {
     const response = await fetch("http://172.16.192.11:8000/api/final/", {
       method: "GET",
@@ -29,59 +24,38 @@ export default function Quarterfinal() {
       {!data.length ? (
         <></>
       ) : (
-        <>
-          <NameGroup onClick={animate}>
-            <p>Четверть финала</p>
-            {isOpen ? (
-              <img
-                style={{ width: "50px", marginBottom: "1rem" }}
-                src={require("../../assets/strelca2.png")}
-              />
-            ) : (
-              <img
-                style={{ width: "50px", marginBottom: "1rem" }}
-                src={require("../../assets/strelca.png")}
-              />
-            )}
-            <img
-              style={{ width: "70%" }}
-              src={require("../../assets/lineOne.png")}
-            />
-          </NameGroup>
+        <ContainerFinal>
           {data.map((el) =>
-            el.matches.map((match) => (
+            !el.matches.length ? (
+              <>Данный матч еще не прошел...</>
+            ) : (
               <>
-                {match.final_type === "3" && (
-                  <BlockInform className={isOpen && "shake"}>
-                    <TableStyleForFinal>
-                      <div>
-                        <p>
-                          Играющие команды : {match.team1_name} /{" "}
-                          {match.team2_name}
-                        </p>
-                        <p>
-                          Счёт : {match.score_team1} / {match.score_team2}
-                        </p>
-                        <p>Победила команда {}:</p>
-                      </div>
-                      <div>
-                        <iframe
-                          width="500"
-                          height="300"
-                          src={match.stream_url}
-                          title="YouTube video player"
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                    </TableStyleForFinal>
-                  </BlockInform>
-                )}
+                <p> Четверть финала</p>
+                {el.matches.map((match) => (
+                  <>
+                    {match.final_type === "3" && (
+                      <TableStyleForFinal style={{ margin: "8% auto" }}>
+                        <div>
+                          <p>
+                            {match.team1_name} - {match.score_team1}
+                          </p>
+                          <p>
+                            {match.team2_name} - {match.score_team2}
+                          </p>
+                          {match.score_team1 > match.score_team2 ? (
+                            <p>Победила команда {match.team1_name}</p>
+                          ) : (
+                            <p>Победила команда {match.team2_name}</p>
+                          )}
+                        </div>
+                      </TableStyleForFinal>
+                    )}
+                  </>
+                ))}
               </>
-            ))
+            )
           )}
-        </>
+        </ContainerFinal>
       )}
     </>
   );
