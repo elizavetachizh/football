@@ -26,21 +26,45 @@ export default function OneSecondFinal() {
         <></>
       ) : (
         <ContainerFinal>
-          Полуфинал
+          <h2>Полуфинал</h2>
           {data.map((el) =>
             el.matches.map((match) => (
               <>
                 {match.final_type === "2" && (
                   <TableStyleForFinal style={{ margin: "40% auto" }}>
+                    <div>
                       <div>
                         <p>
-                          {match.team1_name} - {match.score_team1}
+                          {match.team1_name} -{" "}
+                          <strong>{match.score_team1}</strong>
                         </p>
                         <p>
-                          {match.team2_name} - {match.score_team2}
+                          {match.team2_name} -{" "}
+                          <strong>{match.score_team2}</strong>
                         </p>
-                        {match.score_team1>match.score_team2 ?   <p>Победила команда {match.team1_name}</p> :   <p>Победила команда {match.team2_name}</p>}
                       </div>
+                      <div>
+                        {match.score_team1 > match.score_team2 ? (
+                          <>
+                            <p>
+                              Победила команда: <br />
+                            </p>
+                            <p>
+                              <strong>{match.team1_name}</strong>
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p>
+                              Победила команда: <br />
+                            </p>
+                            <p>
+                              <strong>{match.team2_name}</strong>
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </TableStyleForFinal>
                 )}
               </>

@@ -30,23 +30,43 @@ export default function Quarterfinal() {
               <>Данный матч еще не прошел...</>
             ) : (
               <>
-                <p> Четверть финала</p>
+                <h2> Четверть финала</h2>
                 {el.matches.map((match) => (
                   <>
                     {match.final_type === "3" && (
                       <TableStyleForFinal style={{ margin: "8% auto" }}>
                         <div>
-                          <p>
-                            {match.team1_name} - {match.score_team1}
-                          </p>
-                          <p>
-                            {match.team2_name} - {match.score_team2}
-                          </p>
-                          {match.score_team1 > match.score_team2 ? (
-                            <p>Победила команда {match.team1_name}</p>
-                          ) : (
-                            <p>Победила команда {match.team2_name}</p>
-                          )}
+                          <div>
+                            <p>
+                              {match.team1_name} -{" "}
+                              <strong>{match.score_team1}</strong>
+                            </p>
+                            <p>
+                              {match.team2_name} -{" "}
+                              <strong>{match.score_team2}</strong>
+                            </p>
+                          </div>
+                          <div>
+                            {match.score_team1 > match.score_team2 ? (
+                              <>
+                                <p>
+                                  Победила команда: <br />
+                                </p>
+                                <p>
+                                  <strong>{match.team1_name}</strong>
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p>
+                                  Победила команда: <br />
+                                </p>
+                                <p>
+                                  <strong>{match.team2_name}</strong>
+                                </p>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </TableStyleForFinal>
                     )}

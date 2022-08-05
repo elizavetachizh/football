@@ -54,7 +54,7 @@ export const TableStyle = styled.table`
 `;
 export const Home = styled.div`
   display: flex;
-  max-width: 1300px;
+  max-width: 1600px;
   width: 100%;
   margin: 0 auto;
   flex-direction: column;
@@ -200,9 +200,10 @@ export const NameGroup = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: #0d4475;
   p {
     font-weight: bold;
-    color: #0d4475;
+
     text-transform: uppercase;
     font-size: 24px;
     text-shadow: 1px 1px 1px silver, -1px 1px 1px silver;

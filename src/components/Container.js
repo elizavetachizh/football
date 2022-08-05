@@ -97,15 +97,6 @@ export default function ContainerPage() {
                     <BlockInform
                       className={isOpen && currentGroupId === el.id && "shake"}
                     >
-                      {/*<iframe*/}
-                      {/*  width="700"*/}
-                      {/*  height="400"*/}
-                      {/*  src={el.stream_url}*/}
-                      {/*  title="YouTube video player"*/}
-                      {/*  frameBorder="0"*/}
-                      {/*  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
-                      {/*  allowFullScreen*/}
-                      {/*></iframe>*/}
                       <Table key={el.id} object={el} />
                     </BlockInform>
                     <img
