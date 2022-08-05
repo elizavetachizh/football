@@ -12,13 +12,16 @@ export default function SecondVersion() {
     setIsOpen(!isOpen);
   }, [isOpen]);
   const getData = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/final/", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "http://tournament.mingas.by:8000/api/final/",
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return await response.json();
   }, []);
   useEffect(() => {
@@ -35,26 +38,25 @@ export default function SecondVersion() {
           <NameGroup onClick={animate}>
             <p>Финал</p>
             {isOpen ? (
-              <img
+              <img alt={''}
                 style={{ width: "50px", marginBottom: "1rem" }}
                 src={require("../../assets/strelca2.png")}
               />
             ) : (
-              <img
+              <img alt={''}
                 style={{ width: "50px", marginBottom: "1rem" }}
                 src={require("../../assets/strelca.png")}
               />
             )}
-
           </NameGroup>
           <ContainerForBlocksFinal className={isOpen && "shake"}>
             <Quarterfinal />
             <OneSecondFinal />
             <Final />
           </ContainerForBlocksFinal>
-          <img
-              style={{ width: "70%" }}
-              src={require("../../assets/lineOne.png")}
+          <img alt={''}
+            style={{ width: "70%" }}
+            src={require("../../assets/lineOne.png")}
           />
         </>
       )}

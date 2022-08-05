@@ -46,7 +46,7 @@ export const TableStyleForFinal = styled.div`
 
     p {
       font-size: 14px;
-      @media(max-width: 800px) {
+      @media (max-width: 800px) {
         font-size: 12px;
       }
     }
@@ -56,7 +56,7 @@ export const TableStyleForFinal = styled.div`
       border-right: 1px solid #0d4475;
       strong {
         font-size: 1.2rem;
-        @media(max-width: 800px) {
+        @media (max-width: 800px) {
           font-size: 1rem;
         }
         font-weight: bold;
@@ -67,7 +67,7 @@ export const TableStyleForFinal = styled.div`
       flex-direction: column;
       strong {
         font-size: 1.2rem;
-        @media(max-width: 800px) {
+        @media (max-width: 800px) {
           font-size: 1rem;
         }
         font-weight: bold;

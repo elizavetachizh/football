@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { BlockInform, NameGroup } from "../styles";
 import { ContainerFinal, TableStyleForFinal } from "../stylesFinal";
 
 export default function Final() {
   const [data, setData] = useState([]);
   const getData = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/final/");
+    const response = await fetch("http://tournament.mingas.by:8000/api/final/");
     return await response.json();
   }, []);
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function Final() {
                               Победила команда: <br />
                             </p>
                             <p>
-                              <strong>{" "}{match.team1_name}</strong>
+                              <strong> {match.team1_name}</strong>
                             </p>
                           </>
                         ) : (

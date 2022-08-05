@@ -2,7 +2,7 @@ import { useTable } from "react-table";
 import React from "react";
 import { getColumns } from "../utils/getColumns";
 import { getTableData } from "../makeData";
-import {TableStyle} from "./styles";
+import { TableStyle } from "./styles";
 
 export const Table = React.memo(({ object }) => {
   const columns = getColumns(object);

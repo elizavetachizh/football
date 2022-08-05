@@ -31,17 +31,22 @@ export default function ContainerPage() {
   );
 
   const getData = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/groups/", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "http://tournament.mingas.by:8000/api/groups/",
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return await response.json();
   }, []);
   const getStream = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/stream/");
+    const response = await fetch(
+      "http://tournament.mingas.by:8000/api/stream/"
+    );
     return await response.json();
   }, []);
   useEffect(() => {
@@ -70,7 +75,6 @@ export default function ContainerPage() {
                 <iframe
                   src={el.stream_url}
                   title="YouTube video player"
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -83,12 +87,12 @@ export default function ContainerPage() {
                     <NameGroup onClick={() => animate(el.id)}>
                       <p>Группа: {el.name}</p>
                       {isOpen && currentGroupId === el.id ? (
-                        <img
+                        <img alt={''}
                           style={{ width: "50px", marginBottom: "1rem" }}
                           src={require("../assets/strelca2.png")}
                         />
                       ) : (
-                        <img
+                        <img alt={''}
                           style={{ width: "50px", marginBottom: "1rem" }}
                           src={require("../assets/strelca.png")}
                         />
@@ -99,7 +103,7 @@ export default function ContainerPage() {
                     >
                       <Table key={el.id} object={el} />
                     </BlockInform>
-                    <img
+                    <img alt={''}
                       style={{ width: "70%" }}
                       src={require("../assets/lineOne.png")}
                     />
@@ -109,7 +113,7 @@ export default function ContainerPage() {
             </ContainerForTables>
           </ContainerTable>
           <div>
-            <img
+            <img alt={''}
               style={{ width: "100px" }}
               src={require("../assets/logo.png")}
             />

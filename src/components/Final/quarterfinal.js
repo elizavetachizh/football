@@ -4,13 +4,16 @@ import { ContainerFinal, TableStyleForFinal } from "../stylesFinal";
 export default function Quarterfinal() {
   const [data, setData] = useState([]);
   const getData = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/final/", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "http://tournament.mingas.by:8000/api/final/",
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return await response.json();
   }, []);
   useEffect(() => {

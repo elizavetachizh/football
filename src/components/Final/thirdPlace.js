@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { BlockInform, NameGroup } from "../styles";
+import { NameGroup } from "../styles";
 import {
   ContainerFinal,
   ContainerThirdPlace,
@@ -13,13 +13,16 @@ export default function ThirdPlace() {
     setIsOpen(!isOpen);
   }, [isOpen]);
   const getData = useCallback(async () => {
-    const response = await fetch("http://172.16.192.11:8000/api/final/", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "http://tournament.mingas.by:8000/api/final/",
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return await response.json();
   }, []);
   useEffect(() => {
@@ -38,11 +41,13 @@ export default function ThirdPlace() {
             <p>Матч за третье место</p>
             {isOpen ? (
               <img
+                alt={""}
                 style={{ width: "50px", marginBottom: "1rem" }}
                 src={require("../../assets/strelca2.png")}
               />
             ) : (
               <img
+                alt={""}
                 style={{ width: "50px", marginBottom: "1rem" }}
                 src={require("../../assets/strelca.png")}
               />
@@ -61,10 +66,12 @@ export default function ThirdPlace() {
                           <div>
                             <div>
                               <p>
-                                {match.team1_name} -{" "}<strong>{match.score_team1}</strong>
+                                {match.team1_name} -{" "}
+                                <strong>{match.score_team1}</strong>
                               </p>
                               <p>
-                                {match.team2_name} -{" "}<strong>{match.score_team2}</strong>
+                                {match.team2_name} -{" "}
+                                <strong>{match.score_team2}</strong>
                               </p>
                             </div>
                             <div>
@@ -97,7 +104,7 @@ export default function ThirdPlace() {
               )
             )}
           </ContainerThirdPlace>
-          <img
+          <img alt={''}
             style={{ width: "70%" }}
             src={require("../../assets/lineOne.png")}
           />
