@@ -145,7 +145,7 @@ export const ImageMobile = styled.div`
   }
 `;
 export const Arka = styled.img`
-  margin-top: 1400px;
+  margin-top: 1500px;
   width: 100%;
   @media (max-width: 1180px) {
     margin-top: 1000px;

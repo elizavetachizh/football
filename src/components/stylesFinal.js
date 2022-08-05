@@ -33,6 +33,7 @@ export const TableStyleForFinal = styled.div`
   flex-direction: column;
   justify-content: space-around;
   border-bottom: 1px solid #0d4475;
+  height: fit-content;
   div {
     margin: 0 auto;
     text-align: center;
