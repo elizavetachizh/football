@@ -13,16 +13,13 @@ export default function ThirdPlace() {
     setIsOpen(!isOpen);
   }, [isOpen]);
   const getData = useCallback(async () => {
-    const response = await fetch(
-      "http://tournament.mingas.by:8000/api/final/",
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch("http://tournament.mingas.by:8000/api/final/", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return await response.json();
   }, []);
   useEffect(() => {
@@ -75,24 +72,17 @@ export default function ThirdPlace() {
                               </p>
                             </div>
                             <div>
-                              {match.score_team1 > match.score_team2 ? (
+                              {match.is_finished === true ? (
                                 <>
                                   <p>
                                     Победила команда: <br />
                                   </p>
                                   <p>
-                                    <strong>{match.team1_name}</strong>
+                                    <strong> {match.winner}</strong>
                                   </p>
                                 </>
                               ) : (
-                                <>
-                                  <p>
-                                    Победила команда: <br />
-                                  </p>
-                                  <p>
-                                    <strong>{match.team2_name}</strong>
-                                  </p>
-                                </>
+                                <p>Матч не завершился</p>
                               )}
                             </div>
                           </div>
@@ -104,7 +94,8 @@ export default function ThirdPlace() {
               )
             )}
           </ContainerThirdPlace>
-          <img alt={''}
+          <img
+            alt={""}
             style={{ width: "70%" }}
             src={require("../../assets/lineOne.png")}
           />

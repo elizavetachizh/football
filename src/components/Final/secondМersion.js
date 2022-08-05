@@ -13,7 +13,7 @@ export default function SecondVersion() {
   }, [isOpen]);
   const getData = useCallback(async () => {
     const response = await fetch(
-      "http://tournament.mingas.by:8000/api/final/",
+      "http://tournament.mingas.by/api/final/",
       {
         method: "GET",
         mode: "cors",
