@@ -32,7 +32,7 @@ export default function ContainerPage() {
 
   const getData = useCallback(async () => {
     const response = await fetch(
-      "http://tournament.mingas.by:8000/api/groups/",
+      "http://tournament.mingas.by/api/groups/",
       {
         method: "GET",
         mode: "cors",

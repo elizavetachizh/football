@@ -46,7 +46,7 @@ export default function OneSecondFinal() {
                         </p>
                       </div>
                       <div>
-                          {match.is_finished === true ? (
+                          {match.is_finished === true && (
                               <>
                                   <p>
                                       Победила команда: <br />
@@ -55,8 +55,6 @@ export default function OneSecondFinal() {
                                       <strong> {match.winner}</strong>
                                   </p>
                               </>
-                          ) : (
-                              <p>Матч не завершился</p>
                           )}
                       </div>
                     </div>

@@ -37,17 +37,15 @@ export default function Final() {
                         </p>
                       </div>
                       <div>
-                        {match.is_finished === true ? (
-                            <>
-                              <p>
-                                Победила команда: <br />
-                              </p>
-                              <p>
-                                <strong> {match.winner}</strong>
-                              </p>
-                            </>
-                        ) : (
-                            <p>Матч не завершился</p>
+                        {match.is_finished === true && (
+                          <>
+                            <p>
+                              Победила команда: <br />
+                            </p>
+                            <p>
+                              <strong> {match.winner}</strong>
+                            </p>
+                          </>
                         )}
                       </div>
                     </div>
