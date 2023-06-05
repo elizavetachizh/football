@@ -1,7 +1,7 @@
 import { useTable } from "react-table";
 import React from "react";
 import { getColumns } from "../utils/getColumns";
-import { getTableData } from "../makeData";
+import { getTableData } from "../utils/makeData";
 import { TableStyle } from "./styles";
 
 export const Table = React.memo(({ object }) => {
@@ -25,7 +25,7 @@ export const Table = React.memo(({ object }) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map((row) => {
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>

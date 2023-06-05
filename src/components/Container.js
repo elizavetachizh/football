@@ -10,43 +10,25 @@ import {
 } from "./styles";
 import ReactLoading from "react-loading";
 import ThirdPlace from "./Final/thirdPlace";
-import SecondVersion from "./Final/secondМersion";
+import Final from "./Final/Final";
 
 export default function ContainerPage() {
   const [data, setData] = useState([]);
   const [stream, setStream] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentGroupId, setCurrentGroupId] = useState("");
-  const animate = useCallback(
-    (id) => {
-      if (currentGroupId === id) {
-        setCurrentGroupId("");
-        setIsOpen(false);
-      } else {
-        setCurrentGroupId(id);
-        setIsOpen(true);
-      }
-    },
-    [isOpen, currentGroupId]
-  );
+  const [currentGroupId, setCurrentGroupId] = useState([]);
 
   const getData = useCallback(async () => {
-    const response = await fetch(
-      "http://tournament.mingas.by:8000/api/groups/",
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch("http://172.17.44.114:8001/api/groups/", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return await response.json();
   }, []);
   const getStream = useCallback(async () => {
-    const response = await fetch(
-      "http://tournament.mingas.by:8000/api/stream/"
-    );
+    const response = await fetch("http://172.17.44.114:8001/api/stream/");
     return await response.json();
   }, []);
   useEffect(() => {
@@ -55,6 +37,23 @@ export default function ContainerPage() {
       getStream().then((resultStream) => setStream(resultStream));
     }
   }, [data]);
+  const animate = useCallback(
+    (id) => {
+      [currentGroupId]?.forEach((el) => {
+        if (el !== id) {
+          setCurrentGroupId([...new Set([...currentGroupId, id])]);
+        }
+      });
+      currentGroupId?.forEach((el) => {
+        if (el === id) {
+          setCurrentGroupId(
+            currentGroupId.filter((el) => el.toString() !== id)
+          );
+        }
+      });
+    },
+    [currentGroupId]
+  );
   return (
     <>
       {!data.length ? (
@@ -70,54 +69,60 @@ export default function ContainerPage() {
         <Container>
           <ContainerTable>
             <ContainerForTables>
-              <img src={require("../assets/headerTables.png")} alt={""} />
-              {stream.map((el) => (
-                <iframe
-                  src={el.stream_url}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ))}
+              <div>
+                <img
+                  alt={""}
+                  style={{ width: "20%" }}
+                  src={require("../assets/logo.webp")}
+                />
+              </div>
+              <img src={require("../assets/headerTables.webp")} alt={""} />
               <>
-                <SecondVersion />
+                <Final />
                 <ThirdPlace />
                 {data.map((el) => (
                   <>
-                    <NameGroup onClick={() => animate(el.id)}>
-                      <p>Группа: {el.name}</p>
-                      {isOpen && currentGroupId === el.id ? (
-                        <img alt={''}
-                          style={{ width: "50px", marginBottom: "1rem" }}
-                          src={require("../assets/strelca2.png")}
+                    <NameGroup
+                      className={currentGroupId.includes(el.id) && "border"}
+                      onClick={() => animate(el.id)}
+                    >
+                      <p className={"group-name"}>Группа: {el.name}</p>
+                      {currentGroupId.includes(el.id) ? (
+                        <img
+                          alt={""}
+                          className={"arrow"}
+                          src={require("../assets/strelca2.webp")}
                         />
                       ) : (
-                        <img alt={''}
-                          style={{ width: "50px", marginBottom: "1rem" }}
-                          src={require("../assets/strelca.png")}
+                        <img
+                          alt={""}
+                          className={"arrow"}
+                          src={require("../assets/strelca.webp")}
                         />
                       )}
                     </NameGroup>
                     <BlockInform
-                      className={isOpen && currentGroupId === el.id && "shake"}
+                      className={currentGroupId.includes(el.id) && "shake"}
                     >
                       <Table key={el.id} object={el} />
+                      <iframe
+                        style={{ margin: "0 auto 1rem" }}
+                        src={el.stream_url}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
                     </BlockInform>
-                    <img alt={''}
+                    <img
+                      alt={""}
                       style={{ width: "70%" }}
-                      src={require("../assets/lineOne.png")}
+                      src={require("../assets/lineOne.webp")}
                     />
                   </>
                 ))}
               </>
             </ContainerForTables>
           </ContainerTable>
-          <div>
-            <img alt={''}
-              style={{ width: "100px" }}
-              src={require("../assets/logo.png")}
-            />
-          </div>
         </Container>
       )}
     </>
